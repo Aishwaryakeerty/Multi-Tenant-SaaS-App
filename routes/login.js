@@ -4,7 +4,7 @@ function login(req,res)
 {
 	var response;
 
-	var query = "insert into login values('pandyabhavan','Bhavan@123')";
+	var query = "insert into login values(1,'Tenant-1','aishu','Aishu123')";
 	mysql.fetchData(function(err,results){
 		if(err)
 		{
