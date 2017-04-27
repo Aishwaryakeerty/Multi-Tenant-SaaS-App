@@ -11,66 +11,9 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src = "angularjs/gradesController.js"></script>
 </head>
-<script>
-+ function($) {
-    'use strict';
-
-    var dropZone = document.getElementById('drop-zone');
-    var uploadForm = document.getElementById('js-upload-form');
-
-    var startUpload = function(files) {
-        console.log(files)
-    }
-
-    uploadForm.addEventListener('submit', function(e) {
-        var uploadFiles = document.getElementById('js-upload-files').files;
-        e.preventDefault()
-
-        startUpload(uploadFiles)
-    })
-
-    dropZone.ondrop = function(e) {
-        e.preventDefault();
-        this.className = 'upload-drop-zone';
-
-        startUpload(e.dataTransfer.files)
-    }
-
-    dropZone.ondragover = function() {
-        this.className = 'upload-drop-zone drop';
-        return false;
-    }
-
-    dropZone.ondragleave = function() {
-        this.className = 'upload-drop-zone';
-        return false;
-    }
-
-}(jQuery);
-</script>
-<style>
-.upload-drop-zone {
-	height: 200px;
-	border-width: 2px;
-	margin-bottom: 20px;
-}
-
-.upload-drop-zone {
-	color: #ccc;
-	border-style: dashed;
-	border-color: #ccc;
-	line-height: 200px;
-	text-align: center
-}
-
-.upload-drop-zone.drop {
-	color: #222;
-	border-color: #222;
-}
-</style>
-
-<body>
+<body ng-app = "login" ng-controller = "gradesController">
 
 	<div class="container-fluid" style="margin-top: 1%;">
 		<div class="col-xs-5 col-xs-offset-3">
@@ -82,22 +25,16 @@
 
 				<!--panel-body-->
 				<div class="panel-body">
-					<h4>Select files from your computer</h4>
-					<form action="" method="post" enctype="multipart/form-data"
-						id="js-upload-form">
+					<h4>Select file from your computer</h4>
+					<form method="post" enctype="multipart/form-data" action="/upload">
 						<div class="form-inline">
 							<div class="form-group">
-								<input type="file" name="files[]" id="js-upload-files" multiple>
+								<input type="file" name="file" accept=".zip">
 							</div>
-							<button type="submit" class="btn btn-sm btn-primary"
-								id="js-upload-submit">Upload files</button>
+							<input type="submit" class="btn btn-sm btn-primary"
+								value="Upload File">
 						</div>
 					</form>
-
-					<!-- Drop Zone -->
-					<h4>Or drag and drop files below</h4>
-					<div class="upload-drop-zone" id="drop-zone">Just drag and
-						drop files here</div>
 
 				</div>
 			</div>
