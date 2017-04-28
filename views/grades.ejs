@@ -11,12 +11,16 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<script src = "angularjs/gradesController.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.3/angular.min.js"></script>
+<script src="angularjs/gradesController.js"></script>
 </head>
-<body ng-app = "login" ng-controller = "gradesController">
+<body ng-app="login" ng-controller="gradesController">
 
-	<div class="container-fluid" style="margin-top: 1%;">
-		<div class="col-xs-5 col-xs-offset-3">
+	<div class="container-fluid" style="margin-top: 10%;">
+
+		<!--  panel1 -->
+		<div class="col-xs-5 col-xs-offset-3" ng-show="panel1">
 			<div class="panel panel-default">
 				<!-- panel heading -->
 				<div class="panel-heading">
@@ -26,73 +30,86 @@
 				<!--panel-body-->
 				<div class="panel-body">
 					<h4>Select file from your computer</h4>
-					<form method="post" enctype="multipart/form-data" action="/upload">
-						<div class="form-inline">
+					<form>
+						<div class="form-inline"
+							style="padding-top: 5%; padding-bottom: 5%">
 							<div class="form-group">
-								<input type="file" name="file" accept=".zip">
+								<input type="file" file-model="file" accept=".zip">
 							</div>
 							<input type="submit" class="btn btn-sm btn-primary"
-								value="Upload File">
+								value="Upload File" ng-click="file_upload();"
+								ng-disabled="disable">
 						</div>
 					</form>
 
 				</div>
 			</div>
 		</div>
-		<div class="col-xs-5 col-xs-offset-3">
+		<!-- End of panel 1 -->
+		<!--  Panel 2 -->
+		<div class="col-xs-5 col-xs-offset-3" ng-show="panel2">
 			<div class="panel panel-primary">
 				<div class="panel-heading">
 					<strong>Grades</strong>
 				</div>
 				<div class="panel-body">
 					<form class="form-horizontal">
+
 						<div class="form-group">
 							<div class="col-sm-12">
-								<input type="number" class="form-control"
-									placeholder="Tenant number">
+								<img ng-src = "{{img}}" class = "img-responsive" style = "margin: 0 auto;">
+								</div>
+						</div>
+						
+						
+						<div class="form-group">
+							<div class="col-sm-12">
+								<input type="number" class="form-control" placeholder="Tenant number" ng-model="tenantNumber">
 							</div>
 						</div>
 						<div class="form-group">
 							<div class="col-sm-12">
-								<input type="number" class="form-control" placeholder="Score">
+								<input type="number" class="form-control" placeholder="Score" ng-model="score">
 							</div>
 						</div>
 						<div class="form-group">
 							<div class="col-sm-12">
-								<input type="text" class="form-control" placeholder="Grade">
+								<input type="text" class="form-control" placeholder="Grade" ng-model="grades">
 							</div>
 						</div>
 
 						<div class="form-group">
 							<div class="col-sm-12">
 								<textarea class="form-control" rows="5" id="comment"
-									placeholder="Comments"></textarea>
+									placeholder="Comments" ng-model="comments"></textarea>
 							</div>
 						</div>
 
 						<div class="form-group">
 							<div class="col-sm-12">
 								<div class="checkbox">
-									<label><input type="checkbox">Complete</label>
+									<label><input type="checkbox" ng-model="complete">Complete</label>
 								</div>
 							</div>
 						</div>
 						<div class="form-group">
 							<div class="col-sm-12">
 								<div class="checkbox">
-									<label><input type="checkbox">Publish Grades</label>
+									<label><input type="checkbox" ng-model="publish">Publish Grades</label>
+									
 								</div>
 							</div>
 						</div>
 						<div class="form-group">
 							<div class="col-sm-12">
-								<button type="submit" class="btn btn-primary">Submit</button>
+								<button type="submit" class="btn btn-primary" ng-click= "insertData();">Submit</button>
 							</div>
 						</div>
 					</form>
 				</div>
 			</div>
 		</div>
+		<!--  End of panel 2 -->
 	</div>
 </body>
 </html>

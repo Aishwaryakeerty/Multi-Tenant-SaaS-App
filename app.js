@@ -33,6 +33,7 @@ app.get('/users', user.list);
 app.post('/login',login.login);
 app.get('/grades',login.getGrades);
 app.post('/upload', login.upload);
+app.put('/insertdata',login.insertdata);
 
 http.createServer(app).listen(app.get('port'), function(){
 	console.log('Express server listening on port ' + app.get('port'));
